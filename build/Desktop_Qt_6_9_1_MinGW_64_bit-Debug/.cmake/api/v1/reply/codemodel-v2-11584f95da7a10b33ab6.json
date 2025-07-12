@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "EtykietyManager",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "EtykietyManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EtykietyManager-Debug-3939201bae0b7eeab73f.json",
+					"name" : "EtykietyManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "EtykietyManager_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EtykietyManager_autogen-Debug-645e6dcc88ff70b3410b.json",
+					"name" : "EtykietyManager_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "EtykietyManager_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-EtykietyManager_autogen_timestamp_deps-Debug-690fa447e05df78cd820.json",
+					"name" : "EtykietyManager_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/ProgramC/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug",
+		"source" : "C:/ProgramC"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

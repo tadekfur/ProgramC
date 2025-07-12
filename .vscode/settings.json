@@ -1,0 +1,28 @@
+{
+    "files.associations": {
+        "*.yaml": "yaml",
+        "locale": "cpp",
+        "thread": "cpp",
+        "xlocale": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "xhash": "cpp",
+        "xmemory": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp",
+        "array": "cpp",
+        "span": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "chrono": "cpp",
+        "future": "cpp",
+        "system_error": "cpp",
+        "xiosbase": "cpp",
+        "memory": "cpp",
+        "filesystem": "cpp"
+    }
+}

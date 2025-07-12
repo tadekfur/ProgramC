@@ -1,0 +1,9 @@
+Python path: ['C:\\ProgramC\\RegonAPI-1.3.1', 'C:\\ProgramC\\python', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+__file__: C:\ProgramC\python\gus_wrapper_full.py
+Sprawdzone ścieżki RegonAPI:
+  1. C:\ProgramC\RegonAPI-1.3.1 (istnieje: True)
+  2. C:\RegonAPI-1.3.1 (istnieje: False)
+  3. C:\RegonAPI-1.3.1 (istnieje: False)
+  4. C:\ProgramC\RegonAPI-1.3.1 (istnieje: True)
+  5. C:\ProgramC\RegonAPI-1.3.1 (istnieje: True)
+Wybrana ścieżka RegonAPI: C:\ProgramC\RegonAPI-1.3.1

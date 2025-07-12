@@ -1,0 +1,9 @@
+main_100.ico
+printui_132.ico
+calc_IDI_CALC_ICON.ico
+shell32_44.ico
+shell32_45.ico
+shell32_46.ico
+shell32_47.ico
+control_101.ico
+shell32_131.ico

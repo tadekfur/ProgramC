@@ -1,0 +1,49 @@
+{
+  "order": {
+    "order_number": "TEST-001",
+    "order_date": "2025-01-02",
+    "delivery_date": "2025-01-10",
+    "notes": "Test zamówienia",
+    "delivery_company": "Test Firma",
+    "delivery_street": "ul. Testowa 1",
+    "delivery_postal_code": "00-000",
+    "delivery_city": "Miasto Test"
+  },
+  "client": {
+    "name": "Test Klient Sp. z o.o.",
+    "client_number": 12345,
+    "contact_person": "Jan Kowalski",
+    "phone": "+48 123 456 789",
+    "email": "test@example.com",
+    "street": "ul. Główna 10",
+    "postal_code": "12-345",
+    "city": "Warszawa",
+    "nip": "1234567890"
+  },
+  "orderItems": [
+    {
+      "width": "100",
+      "height": "50",
+      "material": "Papier samoprzylepny",
+      "ordered_quantity": "1000",
+      "quantity_type": "szt",
+      "roll_length": "500m",
+      "core": "76mm",
+      "price": "150.00",
+      "price_type": "/tyś",
+      "zam_rolki": "2"
+    },
+    {
+      "width": "80",
+      "height": "40",
+      "material": "Folia przezroczysta",
+      "ordered_quantity": "500",
+      "quantity_type": "szt",
+      "roll_length": "300m",
+      "core": "40mm",
+      "price": "200.00",
+      "price_type": "/rolka",
+      "zam_rolki": "1"
+    }
+  ]
+}

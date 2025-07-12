@@ -1,0 +1,18 @@
+Failed to import RegonAPI: No module named 'bs4'
+Python path: ['C:\\ProgramC\\RegonAPI-1.3.1', 'C:\\ProgramC\\python', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\tadek\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+Looking for RegonAPI at: C:\ProgramC\RegonAPI-1.3.1
+RegonAPI path exists: True
+Current working directory: C:\ProgramC
+__file__: C:\ProgramC\python\gus_wrapper.py
+Traceback (most recent call last):
+  File "C:\ProgramC\python\gus_wrapper.py", line 41, in <module>
+    from RegonAPI import RegonAPI
+  File "C:\ProgramC\RegonAPI-1.3.1\RegonAPI\__init__.py", line 1, in <module>
+    from .regon_api import *
+  File "C:\ProgramC\RegonAPI-1.3.1\RegonAPI\regon_api.py", line 19, in <module>
+    from .operations import RegonAPIOperations
+  File "C:\ProgramC\RegonAPI-1.3.1\RegonAPI\operations.py", line 5, in <module>
+    from .parsers import parse_xml_response
+  File "C:\ProgramC\RegonAPI-1.3.1\RegonAPI\parsers.py", line 5, in <module>
+    from bs4 import BeautifulSoup
+ModuleNotFoundError: No module named 'bs4'

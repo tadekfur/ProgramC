@@ -1,0 +1,54 @@
+QWidget {
+    font-size: 15px;
+    background: #f6f8fa;
+}
+QTableView {
+    font-size: 15px;
+    alternate-background-color: #f3f6fa;
+}
+QHeaderView::section {
+    font-size: 15px;
+    font-weight: bold;
+    background: #f3f6fa;
+    color: #222;
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+}
+QTableView::item:selected {
+    background: #2563eb;
+    color: #fff;
+}
+QTableView::item:focus {
+    background: #2563eb;
+}
+QPushButton {
+    background: #2563eb;
+    color: #fff;
+    border-radius: 6px;
+    padding: 6px 16px;
+}
+QPushButton:hover {
+    background: #1d4ed8;
+}
+QLineEdit, QComboBox, QDateEdit, QTextEdit {
+    background: #fff;
+    border: 1px solid #bcd;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 15px;
+}
+QGroupBox {
+    background: #f6f8fa;
+    border-radius: 8px;
+    border: 1.5px solid #bcd;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 12px;
+}
+QGroupBox::title {
+    font-weight: normal;
+    color: #222;
+}
+QLabel {
+    font-size: 15px;
+}

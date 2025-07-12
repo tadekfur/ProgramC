@@ -1,0 +1,13 @@
+// Dodaj do CMakeLists.txt rejestrację nowego pliku widoku
+set(SOURCES
+    ...existing code...
+    views/materials_order_form.cpp
+    views/materials_pdf_page.cpp
+    ...existing code...
+)
+set(HEADERS
+    ...existing code...
+    views/materials_order_form.h
+    views/materials_pdf_page.h
+    ...existing code...
+)

@@ -1,0 +1,38 @@
+# CMakeLists.txt for migration tool only
+cmake_minimum_required(VERSION 3.16)
+
+project(SecurityMigration LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Find Qt6
+find_package(Qt6 COMPONENTS Core REQUIRED)
+
+# Migration tool sources
+set(MIGRATION_SOURCES
+    migrate_security.cpp
+    utils/secure_user_manager.cpp
+    utils/password_manager.cpp
+    models/user.cpp
+)
+
+set(MIGRATION_HEADERS
+    utils/secure_user_manager.h
+    utils/password_manager.h
+    models/user.h
+)
+
+# Create migration executable
+add_executable(migrate_security ${MIGRATION_SOURCES} ${MIGRATION_HEADERS})
+
+target_include_directories(migrate_security PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/models
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
+)
+
+target_link_libraries(migrate_security PRIVATE Qt6::Core)
+
+# Enable automatic MOC
+set_target_properties(migrate_security PROPERTIES AUTOMOC ON)

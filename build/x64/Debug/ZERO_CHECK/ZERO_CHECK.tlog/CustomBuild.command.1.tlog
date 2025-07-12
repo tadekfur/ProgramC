@@ -1,0 +1,10 @@
+^C:\PROGRAMC\BUILD\CMAKEFILES\E418D1CD10F061DC2811B71BC522A2DA\GENERATE.STAMP.RULE
+setlocal
+C:\Qt\Tools\CMake_64\bin\cmake.exe -SC:/ProgramC -BC:/ProgramC/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/ProgramC/build/EtykietyManager.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>DejaVuSans.ttf</file>
+        <file>DejaVuSans-Bold.ttf</file>
+        <file>DejaVuSans-BoldOblique.ttf</file>
+        <file>DejaVuSans-ExtraLight.ttf</file>
+        <file>DejaVuSans-Oblique.ttf</file>
+        <file>arialuni.ttf</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <!-- Dodaj tutaj pliki ikon -->
+    </qresource>
+    <qresource prefix="/images">
+        <!-- Dodaj tutaj pliki obrazów -->
+    </qresource>
+</RCC>

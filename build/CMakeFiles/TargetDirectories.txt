@@ -1,0 +1,3 @@
+C:/ProgramC/build/CMakeFiles/EtykietyManager.dir
+C:/ProgramC/build/CMakeFiles/ALL_BUILD.dir
+C:/ProgramC/build/CMakeFiles/ZERO_CHECK.dir

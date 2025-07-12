@@ -1,0 +1,10 @@
+Testowe NIP-y do sprawdzenia w GUS:
+
+1. Microsoft sp. z o.o. - NIP: 5252331077
+2. Google Poland sp. z o.o. - NIP: 5272758174
+3. Asseco Poland S.A. - NIP: 6770011867
+4. CD Projekt S.A. - NIP: 7342701944
+5. PKN Orlen S.A. - NIP: 7742476218
+6. Orange Polska S.A. - NIP: 5260011006
+
+Te NIP-y powinny istnieć w rejestrze GUS i zwracać prawidłowe dane.

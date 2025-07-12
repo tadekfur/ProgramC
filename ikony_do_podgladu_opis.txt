@@ -1,0 +1,9 @@
+main_100.ico - uniwersalna, główna akcja
+printui_132.ico - drukarka, eksport/druk
+calc_IDI_CALC_ICON.ico - kalkulator, Excel
+shell32_44.ico - strzałka w lewo
+shell32_45.ico - strzałka w prawo
+shell32_46.ico - strzałka w górę
+shell32_47.ico - strzałka w dół
+control_101.ico - zębatka, ustawienia
+shell32_131.ico - kosz, usuń

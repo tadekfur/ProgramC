@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(chmod:*)",
+      "Bash(source:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(cmake:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)",
+      "Bash(make:*)",
+      "Bash(cp:*)",
+      "Bash(true)",
+      "Bash(ninja)",
+      "Bash(./EtykietyManager.exe)",
+      "Bash(ldd:*)"
+    ],
+    "deny": []
+  }
+}
