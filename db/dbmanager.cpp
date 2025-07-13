@@ -977,7 +977,9 @@ QVector<QMap<QString, QVariant>> DbManager::getOrderItems(int orderId) {
     QVector<QMap<QString, QVariant>> items;
     
     QSqlQuery query(db);
-    query.prepare("SELECT id, order_id, product_name, quantity, unit, price, vat_rate, notes "
+    query.prepare("SELECT id, order_id, product_name, quantity, unit, price, vat_rate, notes, "
+                 "width, height, material, ordered_quantity, quantity_type, roll_length, "
+                 "core, price_type, zam_rolki "
                  "FROM order_items WHERE order_id = ? ORDER BY id");
     query.addBindValue(orderId);
     
@@ -996,6 +998,17 @@ QVector<QMap<QString, QVariant>> DbManager::getOrderItems(int orderId) {
         item["price"] = query.value(5);
         item["vat_rate"] = query.value(6);
         item["notes"] = query.value(7);
+        
+        // Dodaj szczegółowe pola dla PDF
+        item["width"] = query.value(8);
+        item["height"] = query.value(9);
+        item["material"] = query.value(10);
+        item["ordered_quantity"] = query.value(11);
+        item["quantity_type"] = query.value(12);
+        item["roll_length"] = query.value(13);
+        item["core"] = query.value(14);
+        item["price_type"] = query.value(15);
+        item["zam_rolki"] = query.value(16);
         
         // Oblicz wartość netto i brutto
         double quantity = item["quantity"].toDouble();
@@ -1122,6 +1135,24 @@ void DbManager::initializeTables() {
     
     if (!query.exec(createOrderItems)) {
         qDebug() << "Failed to create order_items table:" << query.lastError().text();
+    }
+
+    // Add missing columns to order_items table for PDF generation
+    QStringList requiredColumns = {
+        "width", "height", "material", "ordered_quantity", "quantity_type", 
+        "roll_length", "core", "price_type", "zam_rolki"
+    };
+
+    QSqlRecord orderItemsRecord = db.record("order_items");
+    for (const QString& column : requiredColumns) {
+        if (!orderItemsRecord.contains(column)) {
+            QString alterQuery = QString("ALTER TABLE order_items ADD COLUMN %1 TEXT").arg(column);
+            if (!query.exec(alterQuery)) {
+                qWarning() << "Nie udało się dodać kolumny" << column << "do tabeli order_items:" << query.lastError().text();
+            } else {
+                qDebug() << "Dodano kolumnę" << column << "do tabeli order_items";
+            }
+        }
     }
     
     // --- Tabele dla dostawców, materiałów i zamówień materiałów ---

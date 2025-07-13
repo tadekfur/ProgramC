@@ -462,17 +462,22 @@ def generate_production_ticket_from_json(json_file_path, output_path):
         
         class OrderItemObj:
             def __init__(self, data_dict):
-                # Mapowanie pól pozycji zamówienia z bazy danych
-                self.width = data_dict.get('width', '')
-                self.height = data_dict.get('height', '')
-                self.material = data_dict.get('material', '')
-                self.ordered_quantity = data_dict.get('ordered_quantity', '')
-                self.quantity_type = data_dict.get('quantity_type', '')
-                self.roll_length = data_dict.get('roll_length', '')
-                self.core = data_dict.get('core', '')
-                self.price = data_dict.get('price', '')
-                self.price_type = data_dict.get('price_type', '')
-                self.zam_rolki = data_dict.get('zam_rolki', '')
+                # Mapowanie pól pozycji zamówienia z bazy danych z fallback
+                self.width = data_dict.get('width', data_dict.get('Szerokość', ''))
+                self.height = data_dict.get('height', data_dict.get('Wysokość', ''))
+                self.material = data_dict.get('material', data_dict.get('Rodzaj materiału', ''))
+                self.ordered_quantity = data_dict.get('ordered_quantity', data_dict.get('zam. ilość', ''))
+                self.quantity_type = data_dict.get('quantity_type', data_dict.get('Typ ilości', ''))
+                self.roll_length = data_dict.get('roll_length', data_dict.get('nawój/długość', ''))
+                self.core = data_dict.get('core', data_dict.get('Średnica rdzenia', ''))
+                self.price = data_dict.get('price', data_dict.get('Cena', ''))
+                self.price_type = data_dict.get('price_type', data_dict.get('CenaTyp', ''))
+                self.zam_rolki = data_dict.get('zam_rolki', data_dict.get('zam. rolki', ''))
+                
+                # Debug logging
+                print(f"[OrderItemObj] Inicjalizacja z danymi: {data_dict}")
+                print(f"[OrderItemObj] Ustawione pola: width={self.width}, height={self.height}, material={self.material}")
+                
                 # Dodaj inne pola z obiektu orderitem jeśli potrzebne
                 for key, value in data_dict.items():
                     if not hasattr(self, key):
