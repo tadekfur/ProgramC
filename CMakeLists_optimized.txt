@@ -1,0 +1,164 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(EtykietyManager LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Performance: Enable compiler optimizations
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# Compiler-specific optimizations
+if (MSVC)
+    add_compile_options(/Zc:__cplusplus)
+    add_compile_options(/permissive-)
+    add_compile_options(/FS)
+    # Performance: Enable optimizations for Release builds
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(/O2 /Ob2)
+    endif()
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    # Performance: Enable optimizations for Release builds
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(-O3 -march=native)
+    endif()
+endif()
+
+# Performance: Enable unity builds to reduce compilation time
+set(CMAKE_UNITY_BUILD ON)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+# Performance: Use precompiled headers
+set(CMAKE_CXX_PRECOMPILE_HEADERS_REUSE_FROM pch_target)
+
+set(CMAKE_PREFIX_PATH "C:/Qt/6.9.1/mingw_64/lib/cmake")
+
+find_package(Qt6 COMPONENTS Core Gui Widgets Sql Network PrintSupport Pdf PdfWidgets REQUIRED)
+
+# Optional components - only if needed
+find_package(Qt6 COMPONENTS WebEngineWidgets QUIET)
+if(Qt6WebEngineWidgets_FOUND)
+    message(STATUS "Qt6WebEngineWidgets found - enabling PDF preview")
+    add_compile_definitions(QT_WEBENGINEWIDGETS_LIB)
+    set(WEBENGINE_LIBS Qt6::WebEngineWidgets)
+else()
+    message(STATUS "Qt6WebEngineWidgets not found - PDF preview will be limited")
+    set(WEBENGINE_LIBS "")
+endif()
+
+if(WIN32)
+    find_package(Qt6 COMPONENTS AxContainer QUIET)
+    if(Qt6AxContainer_FOUND)
+        message(STATUS "Qt6AxContainer found - enabling Adobe Reader support")
+        add_compile_definitions(QT_AXCONTAINER_LIB)
+        set(AXCONTAINER_LIBS Qt6::AxContainer)
+    else()
+        message(STATUS "Qt6AxContainer not found - Adobe Reader not available")
+        set(AXCONTAINER_LIBS "")
+    endif()
+else()
+    set(AXCONTAINER_LIBS "")
+endif()
+
+# Performance: Use explicit file lists instead of GLOB_RECURSE
+set(SOURCES
+    main.cpp
+    mainwindow.cpp
+    # Add specific files instead of using GLOB_RECURSE
+    # This improves build performance and is more maintainable
+)
+
+set(HEADERS
+    mainwindow.h
+    # Add specific headers
+)
+
+# Performance: Organize source files by directory
+file(GLOB MODELS_SOURCES "models/*.cpp")
+file(GLOB VIEWS_SOURCES "views/*.cpp")
+file(GLOB DB_SOURCES "db/*.cpp")
+file(GLOB NETWORK_SOURCES "network/*.cpp")
+file(GLOB UTILS_SOURCES "utils/*.cpp")
+
+file(GLOB MODELS_HEADERS "models/*.h")
+file(GLOB VIEWS_HEADERS "views/*.h")
+file(GLOB DB_HEADERS "db/*.h")
+file(GLOB NETWORK_HEADERS "network/*.h")
+file(GLOB UTILS_HEADERS "utils/*.h")
+
+list(APPEND SOURCES ${MODELS_SOURCES} ${VIEWS_SOURCES} ${DB_SOURCES} ${NETWORK_SOURCES} ${UTILS_SOURCES})
+list(APPEND HEADERS ${MODELS_HEADERS} ${VIEWS_HEADERS} ${DB_HEADERS} ${NETWORK_HEADERS} ${UTILS_HEADERS})
+
+# Create precompiled header target
+add_library(pch_target OBJECT pch.cpp)
+target_precompile_headers(pch_target PRIVATE
+    <QtCore/QtCore>
+    <QtGui/QtGui>
+    <QtWidgets/QtWidgets>
+    <QtSql/QtSql>
+    <QtNetwork/QtNetwork>
+    <memory>
+    <vector>
+    <string>
+)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/models
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    Qt6::Core 
+    Qt6::Gui 
+    Qt6::Widgets 
+    Qt6::Sql 
+    Qt6::Network 
+    Qt6::PrintSupport 
+    Qt6::Pdf 
+    Qt6::PdfWidgets 
+    ${WEBENGINE_LIBS} 
+    ${AXCONTAINER_LIBS}
+)
+
+# Performance: Use optimized resource file
+qt_add_resources(${PROJECT_NAME} resources/app_optimized.qrc)
+
+# Performance: Only copy essential files, not all fonts
+set(ESSENTIAL_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils/order_confirmation.py
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils/production_ticket.py
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils/test_data.json
+)
+
+# Only copy essential fonts (not all DejaVu variants)
+set(ESSENTIAL_FONTS
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/DejaVuSans.ttf
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/DejaVuSans-Bold.ttf
+)
+
+# Performance: Use configure_file instead of custom commands for better caching
+foreach(ESSENTIAL_FILE ${ESSENTIAL_FILES})
+    get_filename_component(FILE_NAME ${ESSENTIAL_FILE} NAME)
+    configure_file(${ESSENTIAL_FILE} ${CMAKE_BINARY_DIR}/utils/${FILE_NAME} COPYONLY)
+endforeach()
+
+foreach(ESSENTIAL_FONT ${ESSENTIAL_FONTS})
+    get_filename_component(FONT_NAME ${ESSENTIAL_FONT} NAME)
+    configure_file(${ESSENTIAL_FONT} ${CMAKE_BINARY_DIR}/${FONT_NAME} COPYONLY)
+endforeach()
+
+# Performance: Set optimization flags for Release builds
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE QT_NO_DEBUG_OUTPUT)
+    if(WIN32)
+        set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+    endif()
+endif()
