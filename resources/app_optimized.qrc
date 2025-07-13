@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <!-- Only include essential fonts, not all variants -->
+        <file>DejaVuSans.ttf</file>
+        <file>DejaVuSans-Bold.ttf</file>
+        <!-- Remove arialuni.ttf - it's 1.6MB and likely unnecessary -->
+        <!-- Remove all other DejaVu variants - they add ~10MB -->
+    </qresource>
+    <qresource prefix="/icons">
+        <!-- Icons will be loaded on-demand -->
+    </qresource>
+    <qresource prefix="/images">
+        <!-- Images will be loaded on-demand -->
+    </qresource>
+</RCC>
