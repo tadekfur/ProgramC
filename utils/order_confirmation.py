@@ -551,7 +551,9 @@ def generate_order_confirmation_from_json(json_file_path, output_path):
         
         # Konwertuj pozycje zamówienia
         converted_items = []
+        print(f"[OrderConfirmation] Przetwarzanie {len(order_items)} pozycji zamówienia")
         for item in order_items:
+            print(f"[OrderConfirmation] Dane pozycji: {item}")
             converted_item = {
                 'Szerokość': item.get('width', ''),
                 'Wysokość': item.get('height', ''),
@@ -564,6 +566,7 @@ def generate_order_confirmation_from_json(json_file_path, output_path):
                 'Cena': item.get('price', ''),
                 'CenaTyp': item.get('price_type', ''),
             }
+            print(f"[OrderConfirmation] Skonwertowana pozycja: {converted_item}")
             converted_items.append(converted_item)
         
         # Generuj PDF używając istniejącej funkcji

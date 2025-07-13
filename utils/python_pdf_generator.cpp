@@ -97,8 +97,16 @@ QJsonArray PythonPdfGenerator::orderItemsToJson(const QVector<QMap<QString, QVar
 {
     QJsonArray jsonArray;
     
+    qDebug() << "[PythonPdfGenerator] Przetwarzanie" << orderItems.size() << "pozycji zamówienia";
+    
     for (const QMap<QString, QVariant>& item : orderItems) {
         QJsonObject itemJson;
+        
+        // Debug: wyświetl dostępne pola
+        qDebug() << "[PythonPdfGenerator] Pola w order item:";
+        for (auto it = item.constBegin(); it != item.constEnd(); ++it) {
+            qDebug() << "  " << it.key() << ":" << it.value().toString();
+        }
         
         for (auto it = item.constBegin(); it != item.constEnd(); ++it) {
             QVariant value = it.value();
